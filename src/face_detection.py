@@ -10,6 +10,7 @@ model.load_weights('../models/facial_expression_model_weights.h5')
 emotions = ('angry', 'disgust', 'fear', 'happy', 'sad', 'surprise', 'neutral')
 
 face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
+#eye_cascade = cv2.CascadeClassifier('haarcascade_eye.xml') #xml for the eyes
 video_capture = cv2.VideoCapture(0) #Inbuilt video camera for Video Stream
 
 
@@ -23,7 +24,6 @@ while True:
 		minNeighbors=8,
 		minSize=(35,35)
 	)
-
 	for (x,y,w,h) in faces:
 		cv2.rectangle(frame, (x,y), (x+w,y+h), (50,50,200), 2)
 		detected_face = frame[int(y):int(y+h), int(x):int(x+w)]
@@ -38,6 +38,12 @@ while True:
 		max_index = np.argmax(predictions[0]) 
 		emotion = emotions[max_index]		 
 		cv2.putText(frame, emotion, (int(x), int(y)), cv2.FONT_HERSHEY_SIMPLEX, 1, (255,255,255), 2)
+
+		'''roi_gray = gray[int(y):int(y+h), int(x):int(x+w)] #locations of the face in grayscale
+		roi_color = frame[int(y):int(y+h), int(x):int(x+w)] #locations of converted grayscale
+		eyes = eye_cascade.detectMultiScale(roi_gray)# detect eyes
+		for (ex,ey,ew,eh) in eyes:
+			cv2.rectangle(roi_color, (ex, ey), (ex+ew,ey+eh), (0,255,0),2) # drawing a blue rectangle around the eyes'''
 
 	cv2.imshow('Video', frame)
 	if cv2.waitKey(1) & 0xFF == ord('q'):
