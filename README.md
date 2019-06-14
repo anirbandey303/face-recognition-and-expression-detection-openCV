@@ -53,5 +53,9 @@ Please read [CONTRIBUTING.md](https://gist.github.com/) for details on our code 
 ## Authors
 
 * **Anirban Dey** - *UEM,Kolkata* - [Anirban Dey](https://github.com/anirbandey303)
+* **Tanmoy Das** - *UEM,Kolkata* - [Tanmoy Das](https://github.com/myselfdevil)
+* **Rajdeep Rajduino** - *UEM,Kolkata* - [Rajdeep Rajduino](https://github.com/Rajduino)
+* **Partha** - *UEM,Kolkata* - [Partha](https://github.com/anirbandey303)
+* **Anwesha Sharma** - *UEM,Kolkata* - [Anwesha Sharma](https://github.com/anirbandey303)
 
 See also the list of [contributors](https://github.com/anirbandey303) who participated in this project.
