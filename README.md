@@ -50,9 +50,19 @@ Install openCV
 $ pip install opencv-python
 ```
 
-## Running the tests
+## Running the model
 
-The automated tests for this system isn't built yet.
+If you have installed all the required packages, you're ready to run the model.
+Go to the required directory
+```
+$ cd face-recognition-and-expression-detection-openCV
+```
+```
+$ cd src
+```
+```
+$ python face_detection_t_v2.py
+```
 
 ## Built With
 
