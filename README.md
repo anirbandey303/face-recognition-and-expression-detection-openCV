@@ -35,6 +35,21 @@ $ sudo apt-get install python3
 $ python --version
 ```
 
+Install TensorFlow
+```
+$ pip install tensorflow
+```
+
+Install Keras.
+```
+$ pip install --upgrade keras==2.2.4
+```
+
+Install openCV
+```
+$ pip install opencv-python
+```
+
 ## Running the tests
 
 The automated tests for this system isn't built yet.
