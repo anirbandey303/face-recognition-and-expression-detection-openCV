@@ -51,7 +51,12 @@ while True:
         emotion = emotions[max_index]
         cv2.putText(img, emotion, (int(x), int(y)), cv2.FONT_HERSHEY_SIMPLEX, 1, (255,255,255), 2)
 
-        eyes = eye_cascade.detectMultiScale(roi_gray)# detect eyes
+        eyes = eye_cascade.detectMultiScale(
+            roi_gray,
+            scaleFactor = 1.2,
+            minNeighbors=5,
+            minSize = (35,35)
+        )# detect eyes
         for (ex,ey,ew,eh) in eyes:
             cv2.rectangle(roi_color, (ex, ey), (ex+ew,ey+eh), (0,255,0),2) # drawing a blue rectangle around the eyes
 
