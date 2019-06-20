@@ -4,6 +4,7 @@ import time
 import sys
 from keras.preprocessing import image
 from keras.models import model_from_json
+import pickle
 
 model = model_from_json(open("../models/facial_expression_model_structure.json", "r").read())
 model.load_weights('../models/facial_expression_model_weights.h5')
@@ -13,7 +14,12 @@ emotions = ('angry', 'disgust', 'fear', 'happy', 'sad', 'surprise', 'neutral')
 #Load Cascade Files
 face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml') #loading the face xml files
 eye_cascade = cv2.CascadeClassifier('haarcascade_eye.xml') #xml for the eyes
-
+recognizer = cv2.face.LBPHFaceRecognizer_create()
+recognizer.read("TrainedFace.yml")
+labels = {}
+with open("face.labels", "rb") as f:
+    init_labels = pickle.load(f)
+    labels = {v:k for k,v in init_labels.items()} #reversing key value pairs inside dictionary
 r = False
 #img=cv2.imread('C:\\aaaaaaaa\\haarcascades\\ab.jpg')
 cap=cv2.VideoCapture(0)
@@ -42,15 +48,28 @@ while True:
         detected_face = cv2.cvtColor(detected_face, cv2.COLOR_BGR2GRAY)  #converting to Gray
         detected_face = cv2.resize(detected_face, (48,48)) #Resizing the face
 
+        #Predicting recognized face
+        id_, confidence = recognizer.predict(detected_face) #predict
+
+
+        if(confidence>70):
+            print(id_)
+            print(labels[id_])
+            font = cv2.FONT_HERSHEY_SIMPLEX
+            name = labels[id_]
+            color = (255,255,255)
+            stroke = 2
+            cv2.putText(img,name, (x+w, y+h), font,1, color, stroke, cv2.LINE_AA)
+
         #Predicting the Emotion
-        '''img_pixels = image.img_to_array(detected_face)
+        img_pixels = image.img_to_array(detected_face)
         img_pixels = np.expand_dims(img_pixels, axis = 0)        
         img_pixels /= 255        
         predictions = model.predict(img_pixels)
 
         max_index = np.argmax(predictions[0]) 
         emotion = emotions[max_index]
-        cv2.putText(img, emotion, (int(x), int(y)), cv2.FONT_HERSHEY_SIMPLEX, 1, (255,255,255), 2)'''
+        cv2.putText(img, emotion, (int(x), int(y)), cv2.FONT_HERSHEY_SIMPLEX, 1, (255,255,255), 2)
 
         eyes = eye_cascade.detectMultiScale(
             roi_gray,

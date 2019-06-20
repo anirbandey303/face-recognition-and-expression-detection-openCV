@@ -39,7 +39,7 @@ for root, dirs, files in os.walk(image_dir):  #walk inside images directory and 
                 y_labels.append(id_)
 
 print(x_train, y_labels)
-with open("MyLabels", "wb") as f:
+with open("face.labels", "wb") as f:
     pickle.dump(label_ids, f)
 
 recognizer.train(x_train, np.array(y_labels))
