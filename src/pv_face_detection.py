@@ -37,7 +37,7 @@ while True:
 		
 		max_index = np.argmax(predictions[0]) 
 		emotion = emotions[max_index]		 
-		cv2.putText(frame, emotion, (int(x), int(y)), cv2.FONT_HERSHEY_SIMPLEX, 1, (255,255,255), 2)
+		cv2.putText(frame, emotion, (int(x+w), int(y+h)), cv2.FONT_HERSHEY_SIMPLEX, 1, (255,255,255), 2)
 
 		'''roi_gray = gray[int(y):int(y+h), int(x):int(x+w)] #locations of the face in grayscale
 		roi_color = frame[int(y):int(y+h), int(x):int(x+w)] #locations of converted grayscale
