@@ -52,7 +52,7 @@ while True:
         id_, confidence = recognizer.predict(detected_face) #predict
 
 
-        if(confidence>70):
+        if(confidence>120):
             print(id_)
             print(labels[id_])
             font = cv2.FONT_HERSHEY_SIMPLEX

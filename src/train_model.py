@@ -21,6 +21,9 @@ for root, dirs, files in os.walk(image_dir):  #walk inside images directory and 
             ##TO-DO make lables into numbers
             ##TO-DO verify and convert image into Grayscale and into numpy array
             pil_image = Image.open(path).convert("L") #converting image to grayscale
+            size = (550, 550)
+            pil_image = pil_image.resize(size, Image.ANTIALIAS)
+
             image_array = np.array(pil_image, "uint8")
             if not label in label_ids:
                 label_ids[label] = current_id
