@@ -53,7 +53,7 @@ while True:
 
 
         if(confidence>120):
-            print(id_)
+            print(id_, confidence)
             print(labels[id_])
             font = cv2.FONT_HERSHEY_SIMPLEX
             name = labels[id_]
@@ -75,7 +75,7 @@ while True:
             roi_gray,
             scaleFactor = 1.2,
             minNeighbors=5,
-            minSize = (35,35)
+            minSize = (48,48)
         )# detect eyes
         for (ex,ey,ew,eh) in eyes:
             cv2.rectangle(roi_color, (ex, ey), (ex+ew,ey+eh), (0,255,0),2) # drawing a blue rectangle around the eyes

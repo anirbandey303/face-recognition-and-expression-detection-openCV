@@ -66,7 +66,7 @@ $ python face_detection_t_v2.py
 
 ## Built With
 
-* Python3
+* Python3.7
 * TensorFlow
 * Keras
 * openCV
